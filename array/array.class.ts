@@ -1,22 +1,45 @@
 export class Array
 {
-    private capacidade: number;
+    private total: number;
     private tamanho: number;
     private elementos: Array;
-
-    constructor(capacidade: number)
-    {
-        this.capacidade = capacidade;
+ 
+    adiciona(elemento:any)
+    {   
+        this.elementos[this.total] = elemento;
+        this.total++;
+      
     }
-    
-    add(elemento:any)
+
+    adicionaNaPosicao(posicao:number, elemento: any)
     {
-        for(let i =0; i < this.capacidade; i++){
-            if(this.elementos[i] === null){
-                this.elementos[i] = elemento;
-                break;
-            }
+
+        for(let i = this.total -1; i >= posicao ; i -=1){
+       
+            this.elementos[i+1] = this.elementos[i];
         }
+        this.elementos[posicao]  = elemento;
+        this.total++;
+    }
+    remover(posicao:number)
+    {
+        for(let i = posicao; i < this.tamanho; i++){
+            this.elementos[i-1] = this.elementos[i];
+        }
+        this.total--;
+    }
+    contem(elemento: any): boolean
+    {
+        for(let i=0;  i < this.total; i++){
+            if(this.elementos[i]===elemento){
+                return true;
+            }
+            return false;
+        }
+    }
+    listar()
+    {
+        return this.elementos;
     }
     
 }
