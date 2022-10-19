@@ -14,7 +14,7 @@ class BubbleSort
                     $change++;
                 }
             }
-            if ($change <= 1) break;
+            if ($change < 1) break;
         }
 
         return $array;
