@@ -1,0 +1,18 @@
+{
+    "name": "diego/algoritmos",
+    "description": "Projeto para treinar o algorimtos",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Diego\\Algoritmos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Diego França",
+            "email": "diego.tg.franca@gmail.com"
+        }
+    ],
+    "require": {}
+}
