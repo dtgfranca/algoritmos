@@ -6,6 +6,13 @@ use function Webmozart\Assert\Tests\StaticAnalysis\integer;
 
 class BinaryHeap
 {
+    private array $data;
+
+    public function __construct()
+    {
+        (new swoole_http_server)
+        $this->data = [];
+    }
     /// binaryhead ->Estrutura de dados que armazena em uma arvore
     /// Uma binary heap pode ser  min -head ou max-heap
     /// Temos uma min -heap uma arvore para ququlquer nó o filho tem um valor mairo do que o pai
@@ -18,15 +25,54 @@ class BinaryHeap
     /// Direita (2i+2)
     /// Calculando o indice do nó pai:
     /// P((i-1/2))
-    ///
+    ///parei 12:31min
     ### max-heap[4.2.8,7,1,53,6]
     public function execute(array $array): array
     {
         $parent = 0;
+        echo "#############inicio ########### \n";
         foreach ($array as $i => $value) {
-            die("pai" . $this->parent($i) . "\n" . "Filho Esquerdo:" . $this->left($this->parent($i)) . "\n" ."Filho direito: {$this->right($this->parent($i))} \n");
+            print_r($this->insert($i, $array));
+
+//            echo("pai: " . $array[$this->parent($i)] . "\n" . "Filho Esquerdo:" . $array[$this->left($i)] . "\n" ."Filho direito: {$array[$this->right($i)]} \n");
+//            if( $array[$this->parent($i)] < $array[$this->left($i)] ) {
+//                $temp =   $array[$this->left($i)];
+//                $array[$this->left($i)] = $array[$this->parent($i)] ;
+//                $array[$this->parent($i)] =$temp;
+//            }
+//            if( $array[$this->parent($i)] < $array[$this->right($i)] ) {
+//                $temp =   $array[$this->right($i)];
+//                $array[$this->right($i)] = $array[$this->parent($i)] ;
+//                $array[$this->parent($i)] =$temp;
+//            }
+//            echo("pai: " . $array[$this->parent($i)] . "\n" . "Filho Esquerdo:" . $array[$this->left($i)] . "\n" ."Filho direito: {$array[$this->right($i)]} \n");
+//            echo "################## \n";
+
+
+//            if(isbigger($i,$p)) {
+//                swap($i,$p);
+//            }
         }
         return [];
+    }
+
+    private function insert(int $value, array $array): array
+    {
+        $this->data[$value] = $array[$value];
+        $i = count($this->data) - 1;
+        $parent = $this->parent($i);
+        if ($this->data[$this->parent($i)] < $this->data[$this->left($i)]) {
+            $temp = $this->data[$this->left($i)];
+            $this->data[$this->left($i)] = $this->data[$this->parent($i)];
+            $this->data[$this->parent($i)] = $temp;
+        }
+        if ($this->data[$this->parent($i)] < $this->data[$this->right($i)]) {
+            $temp = $this->data[$this->right($i)];
+            $this->data[$this->right($i)] = $this->data[$this->parent($i)];
+            $this->data[$this->parent($i)] = $temp;
+        }
+        return $this->data;
+
     }
 
     private function parent($i): int
